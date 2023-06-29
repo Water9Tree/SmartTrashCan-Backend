@@ -9,15 +9,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.water9tree.trashcan.ApiTestHelper;
 import com.water9tree.trashcan.can.dto.request.CanSaveRequest;
 import com.water9tree.trashcan.can.dto.request.CanSearchRequest;
+import com.water9tree.trashcan.can.dto.response.CanResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.web.servlet.MvcResult;
 
 public class CanControllerTest extends ApiTestHelper {
 
   private CanSaveRequest canSaveRequest;
-  private CanSearchRequest canSearchRequest;
 
   @BeforeEach
   void setUp() {
@@ -29,12 +30,6 @@ public class CanControllerTest extends ApiTestHelper {
         .plastic(80)
         .paper(80)
         .bottle(80).build();
-
-    canSearchRequest = CanSearchRequest.builder()
-        .floorNumber(1)
-        .buildingId(417L)
-        .canId(1L)
-        .build();
   }
 
   @Nested
@@ -65,7 +60,17 @@ public class CanControllerTest extends ApiTestHelper {
 
     @Test
     public void 쓰레기통_삭제를_성공한다() throws Exception {
-      createCanUsingApi(canSaveRequest).andExpect(status().isCreated());
+      MvcResult mvcResult = createCanUsingApi(canSaveRequest).andExpect(status().isCreated())
+          .andReturn();
+
+      Long canId = objectMapper.readValue(mvcResult.getResponse().getContentAsString(),
+          CanResponse.class).canId();
+
+      CanSearchRequest canSearchRequest = CanSearchRequest.builder()
+          .floorNumber(canSaveRequest.floorNumber())
+          .buildingId(canSaveRequest.buildingId())
+          .canId(canId)
+          .build();
 
       em.flush();
       em.clear();
