@@ -1,0 +1,70 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+= TrashCan API 문서
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:toclevels: 1
+:sectlinks:
+
+== API 목록
+
+link:../main.html[API 목록으로 돌아가기]
+
+== *Building 생성*
+
+==== Request
+
+include::{snippets}/create-building/http-request.adoc[]
+
+=== 응답
+
+==== Response
+
+include::{snippets}/create-building/http-response.adoc[]
+
+==== Request Fields
+
+include::{snippets}/create-building/request-fields.adoc[]
+
+==== Response Fields
+
+include::{snippets}/create-building/response-fields.adoc[]
+
+== *Building 조회*
+
+==== Request
+
+include::{snippets}/get-building/http-request.adoc[]
+
+=== 응답
+
+==== Response
+
+include::{snippets}/get-building/http-response.adoc[]
+
+==== Request Fields
+
+include::{snippets}/get-building/request-fields.adoc[]
+
+==== Response Fields
+
+include::{snippets}/get-building/response-fields.adoc[]
+
+== *Building 삭제*
+
+==== Request
+
+include::{snippets}/delete-floor/http-request.adoc[]
+
+=== 응답
+
+==== Response
+
+include::{snippets}/delete-floor/http-response.adoc[]
+
+==== Request Fields
+
+include::{snippets}/delete-floor/request-fields.adoc[]

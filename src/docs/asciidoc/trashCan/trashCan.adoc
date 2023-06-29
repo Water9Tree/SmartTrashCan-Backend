@@ -1,0 +1,50 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+= TrashCan API 문서
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:toclevels: 1
+:sectlinks:
+
+== API 목록
+
+link:../main.html[API 목록으로 돌아가기]
+
+== *Floor 생성*
+
+==== Request
+
+include::{snippets}/create-can/http-request.adoc[]
+
+=== 응답
+
+==== Response
+
+include::{snippets}/create-can/http-response.adoc[]
+
+==== Request Fields
+
+include::{snippets}/create-can/request-fields.adoc[]
+
+==== Response Fields
+
+include::{snippets}/create-can/response-fields.adoc[]
+
+== *Can 삭제*
+
+==== Request
+
+include::{snippets}/delete-can/http-request.adoc[]
+
+=== 응답
+
+==== Response
+
+include::{snippets}/delete-can/http-response.adoc[]
+
+==== Request Fields
+
+include::{snippets}/delete-can/request-fields.adoc[]
