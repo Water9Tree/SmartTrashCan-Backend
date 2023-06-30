@@ -13,7 +13,7 @@ endif::[]
 
 link:../main.html[API 목록으로 돌아가기]
 
-== *Floor 생성*
+== *층 생성*
 
 ==== Request
 
@@ -33,7 +33,7 @@ include::{snippets}/create-floor/request-fields.adoc[]
 
 include::{snippets}/create-floor/response-fields.adoc[]
 
-== *Floor 삭제*
+== *층 삭제*
 
 ==== Request
 

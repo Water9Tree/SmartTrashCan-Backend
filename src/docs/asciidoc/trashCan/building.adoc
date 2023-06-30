@@ -13,7 +13,7 @@ endif::[]
 
 link:../main.html[API 목록으로 돌아가기]
 
-== *Building 생성*
+== *건물 생성*
 
 ==== Request
 
@@ -33,7 +33,7 @@ include::{snippets}/create-building/request-fields.adoc[]
 
 include::{snippets}/create-building/response-fields.adoc[]
 
-== *Building 조회*
+== *건물 조회*
 
 ==== Request
 
@@ -53,7 +53,7 @@ include::{snippets}/get-building/request-fields.adoc[]
 
 include::{snippets}/get-building/response-fields.adoc[]
 
-== *Building 삭제*
+== *건물 삭제*
 
 ==== Request
 

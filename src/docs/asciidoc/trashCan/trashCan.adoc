@@ -13,7 +13,7 @@ endif::[]
 
 link:../main.html[API 목록으로 돌아가기]
 
-== *Floor 생성*
+== *쓰레기통 생성*
 
 ==== Request
 
@@ -33,7 +33,7 @@ include::{snippets}/create-can/request-fields.adoc[]
 
 include::{snippets}/create-can/response-fields.adoc[]
 
-== *Can 삭제*
+== *쓰레기통 삭제*
 
 ==== Request
 
