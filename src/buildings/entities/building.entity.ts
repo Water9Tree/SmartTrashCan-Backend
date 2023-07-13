@@ -1,8 +1,7 @@
 import { Floor } from '../../floors/entities/floor.entity';
 
 export class Building {
-  buildingId: number;
-  buildingName: number;
-  name: string;
+  buildingNumber: number;
+  buildingName: string;
   floors: Floor[];
 }

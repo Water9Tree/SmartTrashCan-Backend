@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { CreateBuildingDto } from './dtos/create-building.dto';
+import { BuildingsService } from './buildings.service';
 
 @Controller('buildings')
-export class BuildingsController {}
+export class BuildingsController {
+  constructor(private readonly buildingsService: BuildingsService) {}
+
+  @Post()
+  createBuilding(@Body() buildingData: CreateBuildingDto) {
+    return this.buildingsService.createBuilding(buildingData);
+  }
+}
