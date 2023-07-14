@@ -1,4 +1,4 @@
-import { Floor } from '../../floors/entities/floor.entity';
+import { Floor } from '../floors/entities/floor.entity';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 

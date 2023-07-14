@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { CansModule } from './cans/cans.module';
+import { CansModule } from './buildings/floors/cans/cans.module';
 import { BuildingsModule } from './buildings/buildings.module';
-import { FloorsModule } from './floors/floors.module';
+import { FloorsModule } from './buildings/floors/floors.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
