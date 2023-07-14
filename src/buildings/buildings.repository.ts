@@ -26,4 +26,25 @@ export class BuildingsRepository {
       console.log('error...');
     }
   }
+
+  async addFloor({
+    buildingNumber,
+    floorNumber,
+  }: {
+    buildingNumber: number;
+    floorNumber: number;
+  }) {
+    try {
+      const buildingDoc = await this.buildingModel.findOneAndUpdate(
+        { buildingNumber: buildingNumber },
+        {
+          $push: { floors: { floorNumber: floorNumber, trashCans: [] } },
+        },
+      );
+      return buildingDoc.toObject();
+    } catch (err) {
+      console.log('error...');
+      console.error(err);
+    }
+  }
 }

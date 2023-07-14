@@ -12,7 +12,7 @@ export class Building {
   @Prop()
   buildingName: string;
 
-  @Prop()
+  @Prop([Floor])
   floors: Floor[];
 
   @Prop({ default: new Date(), type: mongoose.Schema.Types.Date })
