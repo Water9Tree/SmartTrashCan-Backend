@@ -6,11 +6,4 @@ export class CreateBuildingDto {
 
   @IsString()
   readonly buildingName: string;
-
-  status: {
-    regular: number;
-    bottle: number;
-    plastic: number;
-    paper: number;
-  };
 }
