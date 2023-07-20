@@ -38,8 +38,52 @@ export class BuildingsRepository {
       const buildingDoc = await this.buildingModel.findOneAndUpdate(
         { buildingNumber: buildingNumber },
         {
-          $push: { floors: { floorNumber: floorNumber, trashCans: [] } },
+          $push: {
+            floors: {
+              floorNumber: floorNumber,
+              trashCans: [],
+            },
+          },
         },
+      );
+      return buildingDoc.toObject();
+    } catch (err) {
+      console.log('error...');
+      console.error(err);
+    }
+  }
+
+  async addCan({
+    buildingNumber,
+    floorNumber,
+  }: {
+    buildingNumber: number;
+    floorNumber: number;
+  }) {
+    try {
+      const buildingDoc = await this.buildingModel.findOneAndUpdate(
+        { buildingNumber: buildingNumber, 'floors.floorNumber': floorNumber },
+        {
+          $push: {
+            'floors.$.trashCans': {
+              status: {
+                regular: null,
+                bottle: null,
+                plastic: null,
+                paper: null,
+              },
+            },
+          },
+        },
+      );
+      console.log(
+        'asdf',
+        this.buildingModel.findOne(
+          { buildingNumber: buildingNumber },
+          {
+            floors: { $elemMatch: { floorNumber: floorNumber } },
+          },
+        ),
       );
       return buildingDoc.toObject();
     } catch (err) {
