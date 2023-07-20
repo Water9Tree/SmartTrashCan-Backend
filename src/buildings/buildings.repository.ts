@@ -91,4 +91,19 @@ export class BuildingsRepository {
       console.error(err);
     }
   }
+
+  async getCans(buildingNumber: number) {
+    try {
+      const buildingDoc = await this.buildingModel
+        .find({
+          buildingNumber: buildingNumber,
+        })
+        .exec();
+
+      return buildingDoc;
+    } catch (err) {
+      console.log('error... get Cans');
+      console.error(err);
+    }
+  }
 }

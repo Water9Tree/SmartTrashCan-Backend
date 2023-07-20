@@ -1,4 +1,4 @@
-import { Controller, Param, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { CansService } from './cans.service';
 
 @Controller()
@@ -11,5 +11,10 @@ export class CansController {
     @Param('floorNumber') floorNumber: number,
   ) {
     return this.cansService.createCan({ buildingNumber, floorNumber });
+  }
+
+  @Get('/buildings/:buildingNumber')
+  getCans(@Param('buildingNumber') buildingNumber: number) {
+    return this.cansService.getCans(buildingNumber);
   }
 }
