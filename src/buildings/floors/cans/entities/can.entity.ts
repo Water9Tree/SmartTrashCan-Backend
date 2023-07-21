@@ -1,19 +1,30 @@
-import { Floor } from '../floors/entities/floor.entity';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IsNumber } from 'class-validator';
 import mongoose from 'mongoose';
 
-export type BuildingDocument = Building & Document;
+export type CanDocument = Can & Document;
+
+class Status {
+  @IsNumber()
+  regular: number;
+
+  @IsNumber()
+  bottle: number;
+
+  @IsNumber()
+  plastic: number;
+
+  @IsNumber()
+  paper: number;
+}
 
 @Schema({ timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } })
-export class Building {
+export class Can {
   @Prop()
-  buildingNumber: number;
+  _id: mongoose.Types.ObjectId;
 
   @Prop()
-  buildingName: string;
-
-  @Prop([Floor])
-  floors: Floor[];
+  status: Status;
 
   @Prop({ default: new Date(), type: mongoose.Schema.Types.Date })
   createdAt: Date;
@@ -22,4 +33,4 @@ export class Building {
   updatedAt: Date;
 }
 
-export const BuildingSchema = SchemaFactory.createForClass(Building);
+export const CanSchema = SchemaFactory.createForClass(Can);

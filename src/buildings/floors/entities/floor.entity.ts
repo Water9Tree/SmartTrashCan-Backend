@@ -1,19 +1,16 @@
-import { Floor } from '../floors/entities/floor.entity';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Can } from '../cans/entities/can.entity';
 import mongoose from 'mongoose';
 
-export type BuildingDocument = Building & Document;
+export type FloorDocument = Floor & Document;
 
 @Schema({ timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } })
-export class Building {
+export class Floor {
   @Prop()
-  buildingNumber: number;
+  floorNumber: number;
 
-  @Prop()
-  buildingName: string;
-
-  @Prop([Floor])
-  floors: Floor[];
+  @Prop([Can])
+  trashCans: Can[];
 
   @Prop({ default: new Date(), type: mongoose.Schema.Types.Date })
   createdAt: Date;
@@ -22,4 +19,4 @@ export class Building {
   updatedAt: Date;
 }
 
-export const BuildingSchema = SchemaFactory.createForClass(Building);
+export const FloorSchema = SchemaFactory.createForClass(Floor);
