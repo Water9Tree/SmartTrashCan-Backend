@@ -4,6 +4,8 @@ import { BuildingsModule } from './buildings/buildings.module';
 import { FloorsModule } from './buildings/floors/floors.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -21,6 +23,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
       inject: [ConfigService],
     }),
+    UsersModule,
+    AuthModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+}
