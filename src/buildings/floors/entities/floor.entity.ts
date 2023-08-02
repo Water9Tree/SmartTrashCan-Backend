@@ -9,8 +9,8 @@ export class Floor {
   @Prop()
   floorNumber: number;
 
-  @Prop([Can])
-  trashCans: Can[];
+  @Prop(Can)
+  trashCan: Can;
 
   @Prop({ default: new Date(), type: mongoose.Schema.Types.Date })
   createdAt: Date;

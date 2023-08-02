@@ -64,13 +64,13 @@ export class BuildingsRepository {
       const buildingDoc = await this.buildingModel.findOneAndUpdate(
         { buildingNumber: buildingNumber, 'floors.floorNumber': floorNumber },
         {
-          $push: {
-            'floors.$.trashCans': {
+          $set: {
+            'floors.$.trashCan': {
               status: {
-                regular: null,
-                bottle: null,
-                plastic: null,
-                paper: null,
+                regular: 0,
+                bottle: 0,
+                plastic: 0,
+                paper: 0,
               },
             },
           },
