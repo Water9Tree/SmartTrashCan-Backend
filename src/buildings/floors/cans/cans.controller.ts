@@ -5,7 +5,7 @@ import { CansService } from './cans.service';
 export class CansController {
   constructor(private readonly cansService: CansService) {}
 
-  @Post('/buildings/:buildingNumber/floors/:floorNumber/cans')
+  @Post('/buildings/:buildingNumber/floors/:floorNumber/can')
   createTrashCan(
     @Param('buildingNumber') buildingNumber: number,
     @Param('floorNumber') floorNumber: number,

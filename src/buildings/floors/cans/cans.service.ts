@@ -4,6 +4,7 @@ import { BuildingsRepository } from 'src/buildings/buildings.repository';
 @Injectable()
 export class CansService {
   constructor(private readonly buildingRepository: BuildingsRepository) {}
+
   createCan({
     buildingNumber,
     floorNumber,
@@ -29,14 +30,9 @@ export class CansService {
         return res.map(({ buildingNumber, buildingName, floors }) => ({
           buildingNumber,
           buildingName,
-          floors: floors.map(({ floorNumber, trashCans }) => ({
+          floors: floors.map(({ floorNumber, trashCan }) => ({
             floorNumber,
-            trashCans: trashCans.map(({ _id, status }) => {
-              return {
-                canId: _id,
-                status,
-              };
-            }),
+            trashCan,
           })),
         }));
       })
