@@ -7,14 +7,17 @@ import {
   BuildingSchema,
 } from 'src/buildings/entities/building.entity';
 import { BuildingsRepository } from 'src/buildings/buildings.repository';
+import { User, UserSchema } from '../../../users/entities/user.entity';
+import { UsersRepository } from '../../../users/users.repository';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Building.name, schema: BuildingSchema },
+      { name: User.name, schema: UserSchema },
     ]),
   ],
   controllers: [CansController],
-  providers: [CansService, BuildingsRepository],
+  providers: [CansService, BuildingsRepository, UsersRepository],
 })
 export class CansModule {}
