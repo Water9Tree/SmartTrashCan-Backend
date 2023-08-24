@@ -24,7 +24,7 @@ export class UsersRepository {
     }
   }
 
-  async getByRole(role: Role): Promise<UserDocument[]> {
+  async getByRole(role: Role[]): Promise<UserDocument[]> {
     try {
       return await this.usersModel.find({ role });
     } catch (err) {

@@ -53,47 +53,49 @@ export class CansService {
   @Cron(CronExpression.EVERY_5_SECONDS)
   handleCron() {
     console.log('Called when the current second is 5');
-    this.userRepository.getByRole('ROLE_CLEANER').then((users) => {
-      this.buildingRepository.getAll().then((buildings) => {
-        for (const building of buildings) {
-          for (const floor of building.floors) {
-            for (const user of users) {
-              if (user.expoToken) {
-                this.checkAndSendPush(
-                  user,
-                  floor.trashCan.status.regular,
-                  building.buildingNumber,
-                  floor.floorNumber,
-                  'regular',
-                );
-                this.checkAndSendPush(
-                  user,
-                  floor.trashCan.status.bottle,
-                  building.buildingNumber,
-                  floor.floorNumber,
-                  'bottle',
-                );
-                this.checkAndSendPush(
-                  user,
-                  floor.trashCan.status.paper,
-                  building.buildingNumber,
-                  floor.floorNumber,
-                  'paper',
-                );
-                this.checkAndSendPush(
-                  user,
-                  floor.trashCan.status.plastic,
-                  building.buildingNumber,
-                  floor.floorNumber,
-                  'plastic',
-                );
-                console.log(user);
+    this.userRepository
+      .getByRole(['ROLE_CLEANER', 'ROLE_ADMIN'])
+      .then((users) => {
+        this.buildingRepository.getAll().then((buildings) => {
+          for (const building of buildings) {
+            for (const floor of building.floors) {
+              for (const user of users) {
+                if (user.expoToken) {
+                  this.checkAndSendPush(
+                    user,
+                    floor.trashCan.status.regular,
+                    building.buildingNumber,
+                    floor.floorNumber,
+                    'regular',
+                  );
+                  this.checkAndSendPush(
+                    user,
+                    floor.trashCan.status.bottle,
+                    building.buildingNumber,
+                    floor.floorNumber,
+                    'bottle',
+                  );
+                  this.checkAndSendPush(
+                    user,
+                    floor.trashCan.status.paper,
+                    building.buildingNumber,
+                    floor.floorNumber,
+                    'paper',
+                  );
+                  this.checkAndSendPush(
+                    user,
+                    floor.trashCan.status.plastic,
+                    building.buildingNumber,
+                    floor.floorNumber,
+                    'plastic',
+                  );
+                  console.log(user);
+                }
               }
             }
           }
-        }
+        });
       });
-    });
   }
 
   private checkAndSendPush(
