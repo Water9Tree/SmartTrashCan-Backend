@@ -1,6 +1,9 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post, UseGuards } from '@nestjs/common';
 import { FloorsService } from './floors.service';
 import { ApiBody } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from 'src/auth/passport/role.guard';
+import { Roles } from 'src/users/entities/authorities';
 
 @Controller()
 export class FloorsController {
@@ -14,6 +17,8 @@ export class FloorsController {
     },
   })
   @Post('/buildings/:buildingNumber/floors')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(['ROLE_ADMIN'])
   createFloor(
     @Param('buildingNumber') buildingNumber: number,
     @Body('floorNumber') floorNumber: number,
