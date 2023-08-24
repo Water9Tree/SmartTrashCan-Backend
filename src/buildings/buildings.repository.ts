@@ -106,4 +106,13 @@ export class BuildingsRepository {
       console.error(err);
     }
   }
+
+  async getAll() {
+    try {
+      return await this.buildingModel.find({}).exec();
+    } catch (err) {
+      console.log('error... get All');
+      console.error(err);
+    }
+  }
 }
