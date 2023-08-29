@@ -63,28 +63,28 @@ export class CansService {
                 if (user.expoToken) {
                   this.checkAndSendPush(
                     user,
-                    floor.trashCan.status.regular,
+                    floor.trashCan?.status.regular,
                     building.buildingNumber,
                     floor.floorNumber,
                     'regular',
                   );
                   this.checkAndSendPush(
                     user,
-                    floor.trashCan.status.bottle,
+                    floor.trashCan?.status.bottle,
                     building.buildingNumber,
                     floor.floorNumber,
                     'bottle',
                   );
                   this.checkAndSendPush(
                     user,
-                    floor.trashCan.status.paper,
+                    floor.trashCan?.status.paper,
                     building.buildingNumber,
                     floor.floorNumber,
                     'paper',
                   );
                   this.checkAndSendPush(
                     user,
-                    floor.trashCan.status.plastic,
+                    floor.trashCan?.status.plastic,
                     building.buildingNumber,
                     floor.floorNumber,
                     'plastic',
