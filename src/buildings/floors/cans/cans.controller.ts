@@ -1,5 +1,6 @@
 import { Controller, Get, Param, Post } from '@nestjs/common';
 import { CansService } from './cans.service';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller()
 export class CansController {
@@ -14,6 +15,7 @@ export class CansController {
   }
 
   @Get('/buildings/:buildingNumber')
+  @ApiOperation({ summary: '쓰레기통 조회' })
   getCans(@Param('buildingNumber') buildingNumber: number) {
     return this.cansService.getCans(buildingNumber);
   }

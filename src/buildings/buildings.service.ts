@@ -18,4 +18,13 @@ export class BuildingsService {
       buildingNumber,
     });
   }
+
+  getBuildingNumbers() {
+    return this.buildingRepository.getAll().then((data) => {
+      return data.map(({ buildingNumber, buildingName }) => ({
+        buildingNumber,
+        buildingName,
+      }));
+    });
+  }
 }
