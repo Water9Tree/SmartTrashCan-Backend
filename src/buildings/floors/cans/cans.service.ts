@@ -64,30 +64,34 @@ export class CansService {
                   this.checkAndSendPush(
                     user,
                     floor.trashCan?.status.regular,
+                    building.buildingName,
                     building.buildingNumber,
                     floor.floorNumber,
-                    'regular',
+                    '일반',
                   );
                   this.checkAndSendPush(
                     user,
                     floor.trashCan?.status.bottle,
+                    building.buildingName,
                     building.buildingNumber,
                     floor.floorNumber,
-                    'bottle',
+                    '병',
                   );
                   this.checkAndSendPush(
                     user,
                     floor.trashCan?.status.paper,
+                    building.buildingName,
                     building.buildingNumber,
                     floor.floorNumber,
-                    'paper',
+                    '종이',
                   );
                   this.checkAndSendPush(
                     user,
                     floor.trashCan?.status.plastic,
+                    building.buildingName,
                     building.buildingNumber,
                     floor.floorNumber,
-                    'plastic',
+                    '플라스틱',
                   );
                   console.log(user);
                 }
@@ -101,12 +105,20 @@ export class CansService {
   private checkAndSendPush(
     user: User,
     percentage: number,
+    buildingName: string,
     buildingNumber: number,
     floorNumber: number,
     key: string,
   ) {
     const trashcanInfo =
-      buildingNumber + '번 빌딩 ' + floorNumber + '층 ' + key + ' 쓰레기통';
+      buildingNumber +
+      ' ' +
+      buildingName +
+      ' ' +
+      floorNumber +
+      '층 ' +
+      key +
+      '쓰레기통';
     if (percentage < 50) {
       this.removeItemFromArray(this.trashCans50, trashcanInfo);
       this.removeItemFromArray(this.trashCans80, trashcanInfo);
@@ -144,7 +156,7 @@ export class CansService {
       },
       body: JSON.stringify({
         to: user.expoToken,
-        title: `앱 <-> nest 알림 테스트`,
+        title: `스마트 쓰레기통 알림`,
         body: trashcanInfo,
       }),
     })
