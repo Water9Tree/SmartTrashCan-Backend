@@ -53,6 +53,31 @@ export class BuildingsRepository {
     }
   }
 
+  async deleteFloor({
+    buildingNumber,
+    floorNumber,
+  }: {
+    buildingNumber: number;
+    floorNumber: number;
+  }) {
+    try {
+      const buildingDoc = await this.buildingModel.updateOne(
+        { buildingNumber: buildingNumber },
+        {
+          $pull: {
+            floors: {
+              floorNumber: floorNumber,
+            },
+          },
+        },
+      );
+      return buildingDoc;
+    } catch (err) {
+      console.log('error...');
+      console.error(err);
+    }
+  }
+
   async addCan({
     buildingNumber,
     floorNumber,

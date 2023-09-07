@@ -21,4 +21,21 @@ export class FloorsService {
       console.log(res);
     });
   }
+
+  deleteFloor({
+    buildingNumber,
+    floorNumber,
+  }: {
+    buildingNumber: number;
+    floorNumber: number;
+  }) {
+    console.log(`delete floor! ${floorNumber} on ${buildingNumber}`);
+    const doc = this.buildingRepository.deleteFloor({
+      buildingNumber,
+      floorNumber,
+    });
+    doc.then((res) => {
+      console.log(res);
+    });
+  }
 }

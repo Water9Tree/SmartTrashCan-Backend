@@ -1,4 +1,11 @@
-import { Body, Controller, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { FloorsService } from './floors.service';
 import { ApiBody } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -24,5 +31,15 @@ export class FloorsController {
     @Body('floorNumber') floorNumber: number,
   ) {
     return this.floorsService.createFloor({ buildingNumber, floorNumber });
+  }
+
+  @Delete('/buildings/:buildingNumber/floors/:floorNumber/can')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(['ROLE_ADMIN'])
+  deleteFloor(
+    @Param('buildingNumber') buildingNumber: number,
+    @Param('floorNumber') floorNumber: number,
+  ) {
+    return this.floorsService.deleteFloor({ buildingNumber, floorNumber });
   }
 }
