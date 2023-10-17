@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { FloorsService } from './floors.service';
-import { ApiBody } from '@nestjs/swagger';
+import { ApiBody, ApiOperation } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from 'src/auth/passport/role.guard';
 import { Roles } from 'src/users/entities/authorities';
@@ -24,6 +24,7 @@ export class FloorsController {
     },
   })
   @Post('/buildings/:buildingNumber/floors')
+  @ApiOperation({ summary: '층 생성' })
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(['ROLE_ADMIN'])
   createFloor(
@@ -36,6 +37,7 @@ export class FloorsController {
   @Delete('/buildings/:buildingNumber/floors/:floorNumber/can')
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(['ROLE_ADMIN'])
+  @ApiOperation({ summary: '쓰레기통 삭제' })
   deleteFloor(
     @Param('buildingNumber') buildingNumber: number,
     @Param('floorNumber') floorNumber: number,

@@ -10,6 +10,7 @@ export class CansController {
   constructor(private readonly cansService: CansService) {}
 
   @Post('/buildings/:buildingNumber/floors/:floorNumber/can')
+  @ApiOperation({ summary: '쓰레기통 생성' })
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(['ROLE_ADMIN'])
   createTrashCan(

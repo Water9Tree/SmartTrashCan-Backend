@@ -12,6 +12,7 @@ export class BuildingsController {
 
   @Post()
   @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @ApiOperation({ summary: '건물 생성' })
   @Roles(['ROLE_ADMIN'])
   createBuilding(@Body() buildingData: CreateBuildingDto) {
     return this.buildingsService.createBuilding(buildingData);

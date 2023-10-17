@@ -3,21 +3,23 @@ import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { RolesGuard } from './passport/role.guard';
 import { Roles } from '../users/entities/authorities';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {
-  }
+  constructor(private readonly authService: AuthService) {}
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(['ROLE_USER', 'ROLE_CLEANER', 'ROLE_ADMIN'])
   @Get('profile')
+  @ApiOperation({ summary: '프로필 조회' })
   getProfile(@Req() req) {
     console.log(req);
     return req.user;
   }
 
   @Post('signIn')
+  @ApiOperation({ summary: '로그인' })
   async login(@Body() req) {
     return this.authService.login(req); // 1
     // return req.user;
