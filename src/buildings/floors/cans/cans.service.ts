@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { BuildingsRepository } from 'src/buildings/buildings.repository';
 import { UsersRepository } from '../../../users/users.repository';
-import { Cron, CronExpression } from '@nestjs/schedule';
-import { User } from '../../../users/entities/user.entity';
 
 @Injectable()
 export class CansService {
@@ -50,7 +48,7 @@ export class CansService {
       });
   }
 
-  @Cron(CronExpression.EVERY_5_SECONDS)
+  /* @Cron(CronExpression.EVERY_5_SECONDS)
   handleCron() {
     console.log('Called when the current second is 5');
     this.userRepository
@@ -162,5 +160,5 @@ export class CansService {
     })
       .then(() => console.log('send!'))
       .catch((err) => console.log(err));
-  }
+  } */
 }
