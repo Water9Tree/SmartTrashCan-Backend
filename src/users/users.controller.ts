@@ -17,6 +17,7 @@ export class UsersController {
   }
 
   @Put('/notification')
+  @ApiOperation({ summary: '알림 수신 여부' })
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   async setNotificationEnable(@Body() req) {
     console.log(req);
